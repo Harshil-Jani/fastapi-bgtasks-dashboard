@@ -1,6 +1,6 @@
 [project]
 name = "fastapi-bgtasks-dashboard"
-version = "0.1.2"
+version = "0.1.3"
 description = "Lightweight background task dashboard with FastAPI BackgroundTasks"
 authors = [{name="Harshil Jani", email="harshiljani2002@gmail.com"}]
 readme = "README.md"

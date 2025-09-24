@@ -20,20 +20,18 @@ router = APIRouter()
 # Broadcast current tasks snapshot
 def _broadcast_update():
     with _tasks_lock:
-        payload = {
-            "tasks": [
-                {
-                    "id": tid,
-                    "func": data["func_name"],
-                    "status": data["status"],
-                    "started_at": _dt(data.get("started_at")),
-                    "ended_at": _dt(data.get("ended_at")),
-                    "params": data.get("params", {}),
-                }
-                for tid, data in _tasks.items()
-            ]
-        }
-    text = json.dumps(payload)
+        tasks_snapshot = [
+            {
+                "id": tid,
+                "func": data["func_name"],
+                "status": data["status"],
+                "started_at": _dt(data.get("started_at")),
+                "ended_at": _dt(data.get("ended_at")),
+                "params": data.get("params", {}),
+            }
+            for tid, data in _tasks.items()
+        ]
+    text = json.dumps({"tasks": tasks_snapshot})
 
     async def _send_all():
         to_remove = []
@@ -47,8 +45,7 @@ def _broadcast_update():
         if to_remove:
             with _ws_lock:
                 for ws in to_remove:
-                    if ws in _ws_connections:
-                        _ws_connections.remove(ws)
+                    _ws_connections.discard(ws)
 
     try:
         loop = asyncio.get_event_loop()

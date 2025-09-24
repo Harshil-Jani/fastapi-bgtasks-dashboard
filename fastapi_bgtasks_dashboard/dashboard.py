@@ -310,6 +310,9 @@ async def websocket_endpoint(websocket: WebSocket):
 async def clear_tasks():
     with _tasks_lock:
         _tasks.clear()
+        _registered_funcs.clear()  # optional but safer
+
+    # Ensure broadcast sees the cleared state immediately
     _broadcast_update()
     return {"ok": True}
 
