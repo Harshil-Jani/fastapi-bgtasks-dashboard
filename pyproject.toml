@@ -1,0 +1,20 @@
+[project]
+name = "fastapi-bgtasks-dashboard"
+version = "0.1.2"
+description = "Lightweight background task dashboard with FastAPI BackgroundTasks"
+authors = [{name="Harshil Jani", email="harshiljani2002@gmail.com"}]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi>=0.100.0",
+    "uvicorn[standard]>=0.23.0",
+    "pydantic>=2.0"
+]
+
+[build-system]
+requires = ["setuptools>=65.5", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project.urls]
+Homepage = "https://github.com/Harshil-Jani/fastapi-bgtasks-dashboard"
+Repository = "https://githhttps://raw.githubusercontent.com/Harshil-Jani/fastapi-bgtasks-dashboard/refs/heads/main/image.pngub.com/Harshil-Jani/fastapi-bgtasks-dashboard"
