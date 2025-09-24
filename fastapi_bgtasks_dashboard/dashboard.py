@@ -258,7 +258,7 @@ def dashboard_html():
 
           clearBtn.addEventListener('click',async ()=>{
             try{
-              await fetch('/dashboard/clear',{method:'POST'});
+              await fetch('/dashboard/clear',{method:'DELETE'});
               allTasks=[];
               renderTasks();
             }catch(e){alert('Failed to clear tasks');}
@@ -306,7 +306,7 @@ async def websocket_endpoint(websocket: WebSocket):
 
 
 # Clear tasks endpoint
-@router.post("/dashboard/clear")
+@router.delete("/dashboard/clear")
 async def clear_tasks():
     with _tasks_lock:
         _tasks.clear()
